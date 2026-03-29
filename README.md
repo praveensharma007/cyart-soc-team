@@ -13,6 +13,16 @@ Evidence collection and documentation
 The implementation uses real tools like Wazuh SIEM, TheHive, and threat intelligence platforms.
 
 📖 Theoretical Knowledge
+# 🔎 Investigation Details
+
+- Checked SSH logs for failed login attempts  
+- Verified source IP reputation using threat intelligence  
+- Observed repeated login attempts pattern  
+- Confirmed no successful login  
+- Classified as brute-force attack  
+
+Conclusion: True Positive alert
+
 🔴 Alert Priority Levels
 
 Alerts are categorized based on severity and impact:
@@ -29,6 +39,23 @@ Business impact
 
 📐 CVSS Example
 Log4Shell (CVE-2021-44228) → Score: 9.8 → Critical
+
+# ⚖️ Alert Priority Justification
+
+The alert was marked as Medium because:
+- No successful compromise observed  
+- Activity limited to login attempts  
+- No lateral movement detected  
+- Target system was not critical  
+
+If successful login occurred → Priority would be High/Critical
+
+# ✅ Alert Validation
+
+- Checked login success → No  
+- Checked unusual behavior → Yes  
+- Checked frequency → High attempts  
+Final Decision: True Positive (Brute-force attempt)
 
 🧠 Incident Classification
 Malware
