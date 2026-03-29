@@ -1,1 +1,7 @@
 
+| Alert ID | Alert Name        | Description                          | Priority | CVSS | MITRE Technique |
+| -------- | ----------------- | ------------------------------------ | -------- | ---- | --------------- |
+| 001      | Phishing Email    | Suspicious email with malicious link | High     | 8.2  | T1566           |
+| 002      | SSH Brute-force   | Multiple failed SSH login attempts   | Medium   | 6.5  | T1110           |
+| 003      | Log4Shell Exploit | Remote code execution attempt        | Critical | 9.8  | T1190           |
+| 004      | Port Scan         | Multiple ports scanned               | Low      | 3.7  | T1046           |
