@@ -1,56 +1,123 @@
 # SOC Analyst Practical Project – Week 2
 
-## Overview
-This project demonstrates a full SOC workflow including alert detection, triage, incident response, and threat mitigation using Wazuh, TheHive, and Metasploit.
+📌 Project Overview
 
----
+This project demonstrates Security Operations Center (SOC) workflows including:
 
-## 🔍 Alert Management
-- Created alert classification mapped to MITRE ATT&CK
-- Prioritized alerts using CVSS scoring
-- Built Wazuh dashboard for visualization
+Alert monitor
+Incident classification
+Alert triage
+Incident response
+Evidence collection and documentation
 
----
+The implementation uses real tools like Wazuh SIEM, TheHive, and threat intelligence platforms.
 
-## 📄 Incident Response
-- Documented phishing incident using SANS template
-- Created investigation logs and response checklist
-- Conducted post-mortem analysis
+📖 Theoretical Knowledge
+🔴 Alert Priority Levels
 
----
+Alerts are categorized based on severity and impact:
 
-## 🚨 Alert Triage
-- Investigated brute-force SSH alert
-- Validated threat using threat intelligence
-- Identified as true positive
+Critical → Ransomware, active exploitation
+High → Unauthorized admin access
+Me → Brute-force attempts
+Low → Port scans
 
----
+📊 Prioritization Criteria
+Asset criticality
+Exploit availability
+Business impact
 
-## 🧪 Capstone Project
-### Attack Simulation
-- Used Metasploit to exploit VSFTPD vulnerability
+📐 CVSS Example
+Log4Shell (CVE-2021-44228) → Score: 9.8 → Critical
 
-### Detection
-- Wazuh detected attack (MITRE T1190)
+🧠 Incident Classification
+Malware
+Phishing
+DDoS
+Insider Threat
+Data Exfiltration
 
-### Response
-- Isolated compromised system
-- Blocked attacker IP
+🧩 Frameworks Used
+MITRE ATT&CK
+ENISA Taxonomy
+In
 
-### Outcome
-- Attack successfully contained
-- No data exfiltration
+📎 Metadata
+Source IP
+Timestamp
+File Hash (IOC)
+Target System
 
----
+⚡ Incident Response Lifecycle
+Preparation
+Identification
+Containment
+Eradication
+Recovery
+Lessons Learned
 
-## 🛠 Tools Used
-- Wazuh
-- TheHive
-- Metasploit
-- VirusTotal
-- AlienVault OTX
+🛠️ Tools Used
+Wazuh (SIEM & Detection)
+TheHive (Incident Management)
+VirusTotal (Threat Intelligence)
+AlienVault OTX (IOC Validation)
+Metasploit (Attac
+CrowdSec (Threat Blocking)
 
----
+🔄 SOC Workflow (Step-by-Step)
+Alert generated in Wazuh
+Alert reviewed by SOC Analyst
+Priority assigned
+Triage performed
+Threat intelligence
+Incident ticket created
+Response action taken
+Documentation completed
+Lessons learned recorded
 
-## 📌 Conclusion
-This project demonstrates practical SOC skills including monitoring, detection, triage, and incident response.
+📊 Alert Management Example
+Alert ID	Description	Source IP	Priority	Status
+002	Brute-force SSH	192.168.1.100	Medium	Open
+
+🔍 Alert Triage & Validation
+Analyzed brute-force SSH alert in Wazuh
+Identified repeated failed login attempts
+Validated source IP using threat intelligence tools
+Determined alert as True Positive
+
+🧩 MITRE ATT&CK Mapping
+Technical ID	Name	Description
+T1110	Brute Force	Multiple login attempts
+T1190	Exploit	Initial access
+🛡️ Incident Report – Brute Force Attack
+Summary
+
+A brute-force SSH attack was detected targeting a Linux server. Multiple failed login attempts were observed from IP 192.168.1.100.
+
+Timeline
+11:00 – Multiple failed login attempts
+11:05 – Alert generated
+11:10 – Suspect
+11:15 – Monitoring and containment
+
+Indicators of Compromise (IOCs)
+Source IP: 192.168.1.100
+Activity: Repeated failed SSH logins
+Response Actions
+Monitored system activity
+Blocked suspicious IP
+In
+Recommendations
+Enable account lockout
+Use SSH key authentication
+Disable root login
+
+🧾 Evidence Collection
+Item	Description	Collected By	Date	Hash Value
+Memory Dump	Server-X Dump	SOC Analyst	2025-08-18	SHA256...lls including monitoring, detection, triage, and incident response.
+
+📌 Conclusion
+
+This project demonstrates practical SOC analyst skills including alert monitoring, triage, incident response, and documentation using real-world tools.
+
+The workflow reflects real SOC operations and highlights the importance of quick detection, proper prioritization, and structured response.
