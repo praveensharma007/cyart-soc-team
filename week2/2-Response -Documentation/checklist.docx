@@ -1,1 +1,8 @@
+Phishing Investigation Checklist
 
+[✔] Verify email headers  
+[✔] Analyze sender domain  
+[✔] Check link in VirusTotal  
+[✔] Identify affected users  
+[✔] Reset credentials  
+[✔] Block malicious domain  
