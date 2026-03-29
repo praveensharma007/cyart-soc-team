@@ -1,6 +1,6 @@
 # SOC Analyst Practical Project – Week 2
 
-📌 Project Overview
+# 📌 Project Overview
 
 This project demonstrates Security Operations Center (SOC) workflows including:
 
@@ -23,7 +23,7 @@ The implementation uses real tools like Wazuh SIEM, TheHive, and threat intellig
 
 Conclusion: True Positive alert
 
-🔴 Alert Priority Levels
+# 🔴 Alert Priority Levels
 
 Alerts are categorized based on severity and impact:
 
@@ -32,12 +32,12 @@ High → Unauthorized admin access
 Me → Brute-force attempts
 Low → Port scans
 
-📊 Prioritization Criteria
+# 📊 Prioritization Criteria
 Asset criticality
 Exploit availability
 Business impact
 
-📐 CVSS Example
+# 📐 CVSS Example
 Log4Shell (CVE-2021-44228) → Score: 9.8 → Critical
 
 # ⚖️ Alert Priority Justification
@@ -57,25 +57,25 @@ If successful login occurred → Priority would be High/Critical
 - Checked frequency → High attempts  
 Final Decision: True Positive (Brute-force attempt)
 
-🧠 Incident Classification
+# 🧠 Incident Classification
 Malware
 Phishing
 DDoS
 Insider Threat
 Data Exfiltration
 
-🧩 Frameworks Used
+# 🧩 Frameworks Used
 MITRE ATT&CK
 ENISA Taxonomy
 In
 
-📎 Metadata
+# 📎 Metadata
 Source IP
 Timestamp
 File Hash (IOC)
 Target System
 
-⚡ Incident Response Lifecycle
+# ⚡ Incident Response Lifecycle
 Preparation
 Identification
 Containment
@@ -83,7 +83,7 @@ Eradication
 Recovery
 Lessons Learned
 
-🛠️ Tools Used
+# 🛠️ Tools Used
 Wazuh (SIEM & Detection)
 TheHive (Incident Management)
 VirusTotal (Threat Intelligence)
@@ -91,7 +91,7 @@ AlienVault OTX (IOC Validation)
 Metasploit (Attac
 CrowdSec (Threat Blocking)
 
-🔄 SOC Workflow (Step-by-Step)
+# 🔄 SOC Workflow (Step-by-Step)
 Alert generated in Wazuh
 Alert reviewed by SOC Analyst
 Priority assigned
@@ -102,21 +102,22 @@ Response action taken
 Documentation completed
 Lessons learned recorded
 
-📊 Alert Management Example
+# 📊 Alert Management Example
 Alert ID	Description	Source IP	Priority	Status
 002	Brute-force SSH	192.168.1.100	Medium	Open
 
-🔍 Alert Triage & Validation
+# 🔍 Alert Triage & Validation
 Analyzed brute-force SSH alert in Wazuh
 Identified repeated failed login attempts
 Validated source IP using threat intelligence tools
 Determined alert as True Positive
 
-🧩 MITRE ATT&CK Mapping
+# 🧩 MITRE ATT&CK Mapping
 Technical ID	Name	Description
 T1110	Brute Force	Multiple login attempts
 T1190	Exploit	Initial access
-🛡️ Incident Report – Brute Force Attack
+
+# 🛡️ Incident Report – Brute Force Attack
 Summary
 
 A brute-force SSH attack was detected targeting a Linux server. Multiple failed login attempts were observed from IP 192.168.1.100.
@@ -139,11 +140,11 @@ Enable account lockout
 Use SSH key authentication
 Disable root login
 
-🧾 Evidence Collection
+# 🧾 Evidence Collection
 Item	Description	Collected By	Date	Hash Value
 Memory Dump	Server-X Dump	SOC Analyst	2025-08-18	SHA256...lls including monitoring, detection, triage, and incident response.
 
-📌 Conclusion
+# 📌 Conclusion
 
 This project demonstrates practical SOC analyst skills including alert monitoring, triage, incident response, and documentation using real-world tools.
 
