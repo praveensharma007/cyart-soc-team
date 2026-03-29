@@ -1,17 +1,1 @@
 
-Ransomware Incident Ticket
-Title:
-[Critical] Ransomware Detected on Server-X
-Description:
-A ransomware infection has been detected on Server-X. The system shows signs of unauthorized encryption activity.
-Indicators of Compromise (IOCs):
-•	File: crypto_locker.exe 
-•	IP Address: 192.168.1.50 
-Priority: Critical
-Status: Open
-Assigned To: SOC Analyst
-Initial Response Actions:
-•	System isolated from network 
-•	Investigation initiated 
-•	Logs collected for analysis
-
