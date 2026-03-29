@@ -1,1 +1,10 @@
 
+Evidence Collection Report
+
+Item: Memory Dump
+System: Server-X
+Collected By: SOC Analyst
+Date: 2025-08-18
+
+SHA256 Hash:
+abc123xyz456def789ghi000xyz123abc456def789ghi000xyz123abc456def
