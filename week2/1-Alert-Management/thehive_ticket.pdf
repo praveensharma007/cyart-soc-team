@@ -1,1 +1,20 @@
 
+Title:
+[Critical] Ransomware Detected on Server-X
+
+Description:
+A ransomware infection was detected on Server-X. Indicators include:
+
+File: crypto_locker.exe
+IP Address: 192.168.1.50
+
+The system shows abnormal encryption activity.
+
+Priority: Critical
+Status: Open
+Assigned To: SOC Analyst
+
+Response Actions Taken:
+
+System isolated from network
+Initial malware analysis started
