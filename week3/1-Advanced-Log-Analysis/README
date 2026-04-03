@@ -1,0 +1,29 @@
+🔍 Advanced Log Analysis
+
+🎯 Objective
+Perform log correlation, detect anomalies, and enrich log data using SIEM tools to identify suspicious activities.
+
+🛠️ Tools Used
+Wazuh (SIEM platform)
+Linux system logs (sshd, PAM)
+GeoIP (built-in Wazuh enrichment)
+
+📊 Log Correlation
+Multiple failed SSH login attempts were generated and analyzed. The logs showed repeated authentication failures from the same source IP, indicating a brute-force attack.
+
+📌 Correlated Log Data
+Timestamp	Event ID	Source IP	Destination IP	Notes
+2026-04-03 11:46:46	5712	127.0.0.1	localhost	SSH brute force attempt detected
+2026-04-03 11:46:42	5710	127.0.0.1	localhost	Multiple failed login attempts
+
+🚨 Anomaly Detection
+An anomaly was identified based on:
+High frequency of failed login attempts within a short time
+Elevated rule level (level 10 alerts in Wazuh)
+
+🔧 Detection Rule (Conceptual - Elastic Equivalent)
+IF failed_logins > threshold (5 attempts in 1 minute)
+THEN trigger alert (possible brute-force attack)
+
+🌍 Log Enrichment (GeoIP)
+The source IP address was analyzed using GeoIP enrichment. Since the activity originated from 127.0.0.1 (localhost), it indicates internal testing. In real-world scenarios, external IPs would be enriched with geographic location data to assess risk.
