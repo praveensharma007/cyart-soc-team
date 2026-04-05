@@ -1,0 +1,30 @@
+
+---
+
+## 🚨 Escalation (100 words)
+A critical exploit was detected targeting a Samba vulnerability. The attacker gained access, triggering Wazuh alerts. Immediate containment actions were taken. The incident aligns with MITRE T1210 and is escalated for further analysis.
+
+
+**Executive Summary:**  
+A simulated attack successfully demonstrated exploitation and detection.
+
+**Timeline:**  
+Attack initiated and detected via Wazuh.
+
+**Response:**  
+System isolated and attacker blocked.
+
+**Recommendations:**  
+Patch systems and monitor logs.
+
+---
+A security incident was detected and contained. The attacker exploited a vulnerability but was quickly blocked. No major damage occurred. Improvements in patching and monitoring are recommended.
+
+---
+
+## 📸 Screenshots
+- Metasploit exploit
+- Shell access
+- Wazuh alert
+- IP block
+- TheHive case
