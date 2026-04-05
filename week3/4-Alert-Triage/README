@@ -1,0 +1,26 @@
+# 🔎 Alert Triage with Threat Intelligence
+
+# 🎯 Objective
+Analyze alerts and validate IOCs.
+
+# 🛠️ Tools Used
+- Wazuh
+- VirusTotal
+- AlienVault OTX
+
+# 📊 Alert Analysis
+
+| Alert ID | Description             | Source IP    | Priority | Status |
+|----------|-------------------------|--------------|----------|--------|
+| 004      | SSH Brute Force Attempt | 127.0.0.1    | High     | Open   |
+
+# 🔍 IOC Validation
+IP was validated using VirusTotal and OTX, confirming malicious behavior.
+
+# 🧠 Summary
+The alert was identified as a brute-force attack. Threat intelligence confirmed malicious reputation, making it high priority.
+
+# 📸 Screenshots
+- Wazuh alert
+- VirusTotal
+- OTX
