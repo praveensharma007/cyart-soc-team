@@ -1,0 +1,28 @@
+# 🚨 Incident Escalation
+
+## 🎯 Objective
+Simulate incident escalation and document response.
+
+## 🛠️ Tools Used
+- TheHive
+
+## 📌 Incident Summary
+Unauthorized access detected on Server-Y.
+
+## 📝 Escalation (100 words)
+A high-priority alert indicating unauthorized access was detected. The activity suggests credential misuse aligned with MITRE T1078. Immediate containment actions were taken, including isolating the system. Due to severity, the case is escalated to Tier 2 for further investigation and impact assessment.
+
+## 📄 SITREP
+
+**Title:** Unauthorized Access on Server-Y  
+
+**Summary:**  
+Detected suspicious login from IP 192.168.1.200 mapped to MITRE T1078.
+
+**Actions Taken:**
+- System isolated  
+- IP blocked  
+- Escalated to Tier 2  
+
+## 📸 Screenshots
+- TheHive case creation
