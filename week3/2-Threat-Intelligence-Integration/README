@@ -1,28 +1,25 @@
-# 🚨 Incident Escalation
+# 🌐 Threat Intelligence Integration
 
 ## 🎯 Objective
-Simulate incident escalation and document response.
+Validate IOCs using external threat intelligence platforms.
 
 ## 🛠️ Tools Used
-- TheHive
+- VirusTotal
+- AlienVault OTX API
 
-## 📌 Incident Summary
-Unauthorized access detected on Server-Y.
+## 🔍 IOC Validation
 
-## 📝 Escalation (100 words)
-A high-priority alert indicating unauthorized access was detected. The activity suggests credential misuse aligned with MITRE T1078. Immediate containment actions were taken, including isolating the system. Due to severity, the case is escalated to Tier 2 for further investigation and impact assessment.
+| Alert ID | IP            | Reputation        | Notes                                      |
+|----------|---------------|-------------------|--------------------------------------------|
+| 003      | 185.220.101.1 | Malicious (OTX)   | Linked to suspicious domains and activity  |
 
-## 📄 SITREP
+## 🔬 Analysis
+The IP was analyzed using OTX API and VirusTotal. It showed multiple malicious associations and suspicious infrastructure.
 
-**Title:** Unauthorized Access on Server-Y  
-
-**Summary:**  
-Detected suspicious login from IP 192.168.1.200 mapped to MITRE T1078.
-
-**Actions Taken:**
-- System isolated  
-- IP blocked  
-- Escalated to Tier 2  
+## 🧠 Summary
+Threat intelligence confirmed the IP as malicious. This enrichment validated alerts and improved incident prioritization.
 
 ## 📸 Screenshots
-- TheHive case creation
+- OTX website result
+- OTX API output
+- VirusTotal result
