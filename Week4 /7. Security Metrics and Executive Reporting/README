@@ -1,1 +1,171 @@
 
+Security Metrics and Executive Reporting – README
+📌 Overview
+
+This project focuses on evaluating Security Operations Center (SOC) performance using key metrics such as MTTD (Mean Time to Detect), MTTR (Mean Time to Respond), False Positive Rate, and Dwell Time. The goal is to analyze incident response efficiency and present findings in a format suitable for both technical teams and executive stakeholders.
+
+🎯 Objectives
+Calculate SOC performance metrics
+Visualize metrics using a dashboard (conceptual Elastic Security)
+Analyze dwell time for incident response
+Create an executive-level security report
+Provide actionable recommendations
+🧰 Tools Used
+Elastic Security (simulated dashboard)
+Google Sheets (metrics calculation & analysis)
+Google Docs (executive reporting)
+📊 SOC Metrics Overview
+Metric	Value	Description
+MTTD	2 hours	Time taken to detect a threat
+MTTR	4 hours	Time taken to respond and mitigate
+False Positive Rate	Low	Incorrect alerts generated
+Dwell Time	6 hours	Total time attacker remained undetected
+📈 Metrics Dashboard (Conceptual)
+
+The Elastic Security dashboard was designed to visualize:
+
+Detection time trends (MTTD)
+Response efficiency (MTTR)
+Alert accuracy (False Positives)
+Incident lifecycle (Dwell Time)
+
+👉 This dashboard helps SOC teams quickly assess performance and identify bottlenecks.
+
+🔍 Metrics Calculation
+✔️ MTTD (Mean Time to Detect)
+𝑀
+𝑇
+𝑇
+𝐷
+=
+𝐷
+𝑒
+𝑡
+𝑒
+𝑐
+𝑡
+𝑖
+𝑜
+𝑛
+𝑇
+𝑖
+𝑚
+𝑒
+−
+𝐴
+𝑡
+𝑡
+𝑎
+𝑐
+𝑘
+𝑇
+𝑖
+𝑚
+𝑒
+MTTD=DetectionTime−AttackTime
+
+Example:
+Attack: 10:00 AM
+Detection: 12:00 PM
+👉 MTTD = 2 hours
+
+✔️ MTTR (Mean Time to Respond)
+𝑀
+𝑇
+𝑇
+𝑅
+=
+𝑅
+𝑒
+𝑠
+𝑝
+𝑜
+𝑛
+𝑠
+𝑒
+𝑇
+𝑖
+𝑚
+𝑒
+−
+𝐷
+𝑒
+𝑡
+𝑒
+𝑐
+𝑡
+𝑖
+𝑜
+𝑛
+𝑇
+𝑖
+𝑚
+𝑒
+MTTR=ResponseTime−DetectionTime
+
+Example:
+Detection: 12:00 PM
+Response: 4:00 PM
+👉 MTTR = 4 hours
+
+✔️ Dwell Time
+𝐷
+𝑤
+𝑒
+𝑙
+𝑙
+𝑇
+𝑖
+𝑚
+𝑒
+=
+𝐷
+𝑒
+𝑡
+𝑒
+𝑐
+𝑡
+𝑖
+𝑜
+𝑛
+𝑇
+𝑖
+𝑚
+𝑒
+−
+𝐼
+𝑛
+𝑖
+𝑡
+𝑖
+𝑎
+𝑙
+𝐶
+𝑜
+𝑚
+𝑝
+𝑟
+𝑜
+𝑚
+𝑖
+𝑠
+𝑒
+𝑇
+𝑖
+𝑚
+𝑒
+DwellTime=DetectionTime−InitialCompromiseTime
+
+👉 In this case: 6 hours
+
+📉 Metrics Analysis (50 Words)
+
+The analysis indicates that the Mean Time to Detect (MTTD) is 2 hours and the Mean Time to Respond (MTTR) is 4 hours, resulting in a dwell time of 6 hours. While detection capabilities are effective, response time can be improved through automation and better incident handling procedures.
+
+📝 Executive Summary (150 Words)
+
+The Security Operations Center (SOC) performance was evaluated using key metrics, including Mean Time to Detect (MTTD), Mean Time to Respond (MTTR), false positive rate, and dwell time. The analysis revealed an MTTD of 2 hours and an MTTR of 4 hours, indicating moderate efficiency in threat detection and response. The dwell time of 6 hours suggests that threats remain in the environment longer than desired, increasing potential risk.
+
+Although the false positive rate is low, indicating effective alert filtering, there is room for improvement in response speed. Delays in response may lead to increased impact during security incidents. To enhance SOC performance, it is recommended to implement automated response mechanisms, improve monitoring tools, and conduct regular training for analysts.
+
+By optimizing detection and response processes, the organization can significantly reduce risk exposure and improve overall cybersecurity resilience.
