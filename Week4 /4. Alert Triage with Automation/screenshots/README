@@ -1,0 +1,87 @@
+
+## 4. Alert Triage with Automation
+
+### 🔹 Objective
+
+The objective of this task is to analyze security alerts, perform triage, and validate potential threats using threat intelligence tools such as Wazuh, VirusTotal, and TheHive.
+
+---
+
+## 🔹 Tools Used
+
+* Wazuh (SIEM platform)
+* VirusTotal (Threat Intelligence)
+* TheHive (Incident Response Platform)
+
+---
+
+## 🔹 Alert Triage Simulation
+
+Due to the absence of live endpoint logs, a simulated alert was analyzed to demonstrate the triage process.
+
+### Alert Details:
+
+| Alert ID | Description              | Source IP      | Priority | Status |
+| -------- | ------------------------ | -------------- | -------- | ------ |
+| 005      | Suspicious File Download | 192.168.56.103 | High     | Open   |
+
+---
+
+## 🔹 Triage Analysis
+
+The alert indicates a suspicious file download activity originating from an internal system (192.168.56.103). Such activity is commonly associated with potential malware delivery or unauthorized software installation.
+
+Key observations:
+
+* The source IP belongs to a Windows endpoint.
+* The alert is categorized as high priority due to potential security risk.
+* Immediate validation of the downloaded file is required.
+
+---
+
+## 🔹 Threat Intelligence Validation (VirusTotal)
+
+A file hash was used to validate the suspicious file using VirusTotal.
+
+### Hash Used:
+
+44d88612fea8a8f36de82e1278abb02f
+
+### Analysis Result:
+
+* The file was flagged as malicious by multiple antivirus engines.
+* Indicates high probability of malware presence.
+
+---
+
+## 🔹 Incident Handling (TheHive)
+
+A case was created in TheHive to manage the alert.
+
+### Case Details:
+
+* Title: Suspicious File Download
+* Severity: High
+
+### Observable Added:
+
+* Type: File Hash
+* Value: 44d88612fea8a8f36de82e1278abb02f
+
+### Investigation Note:
+
+The file hash was analyzed using VirusTotal, and multiple detections confirmed the file as malicious. The alert was escalated for further investigation and containment actions.
+
+---
+
+## 🔹 50-Word Summary
+
+The suspicious file download alert was analyzed using Wazuh. The associated file hash was validated through VirusTotal, which identified it as malicious with multiple detections. Based on this analysis, the alert was classified as high priority and escalated for further investigation to mitigate potential security risks.
+
+---
+
+## 🔹 Conclusion
+
+This task demonstrates the process of alert triage and validation using threat intelligence tools. Even in a simulated environment, the workflow highlights key SOC activities such as detection, analysis, validation, and escalation, which are essential for effective incident response.
+
+---
