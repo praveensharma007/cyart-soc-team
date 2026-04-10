@@ -1,0 +1,40 @@
+README – Evidence Analysis
+📌 Overview
+
+This project demonstrates digital evidence analysis and chain-of-custody management using simulated data. The objective is to analyze network activity from a Windows system and identify suspicious connections while ensuring proper documentation of collected evidence.
+
+🎯 Objective
+Analyze system network connections
+Identify suspicious activity
+Maintain proper chain-of-custody
+Ensure integrity of digital evidence
+🧰 Tools Used
+Velociraptor (simulated query execution)
+FTK Imager (conceptual evidence handling)
+🔍 Evidence Analysis
+
+A simulated Velociraptor query was used:
+
+SELECT * FROM netstat;
+🖥️ Findings
+
+The following suspicious connection was identified:
+
+Local IP: 192.168.56.10
+Remote IP: 185.220.101.45
+Port: 443
+Status: ESTABLISHED
+🚨 Reason for Suspicion:
+External IP not recognized
+Matches known anonymized / suspicious network ranges
+Unusual connection pattern
+📊 Chain of Custody
+Item	Description	Collected By	Date	Hash Value
+Network Log	Server-Z Log	SOC Analyst	2025-04-09	fa0114d6f68fc9ce78f8c2a5042b337d8c905ff75
+🔐 Evidence Integrity
+Hash value generated using SHA256
+Ensures no tampering of evidence
+Maintains forensic validity
+🧠 Conclusion
+
+The analysis identified a suspicious external connection, indicating possible unauthorized communication. Proper documentation and hashing ensured the integrity of collected evidence. Continuous monitoring and investigation of unknown connections are essential to prevent potential security incidents.
