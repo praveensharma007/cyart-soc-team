@@ -1,0 +1,47 @@
+Post-Incident Analysis – README
+📌 Overview
+
+This project focuses on Post-Incident Analysis of a simulated phishing attack. The objective is to identify the root cause, document contributing factors, and calculate key SOC performance metrics such as MTTD (Mean Time to Detect) and MTTR (Mean Time to Respond).
+
+🎯 Objective
+Perform Root Cause Analysis (RCA) using the 5 Whys method
+Identify contributing factors using a Fishbone Diagram
+Calculate SOC metrics (MTTD, MTTR)
+Document lessons learned and improvements
+🧰 Tools Used
+Google Sheets (RCA & metrics documentation)
+Draw.io (Fishbone Diagram)
+🔍 Root Cause Analysis (5 Whys)
+Question	Answer
+Why was email opened?	User clicked malicious link
+Why was link clicked?	Weak email filtering
+Why weak filtering?	No advanced spam protection
+Why no protection?	Lack of security controls
+Why lack of controls?	Poor security policy
+🐟 Fishbone Diagram (Cause Analysis)
+
+The Fishbone Diagram identifies key contributing factors:
+
+People: Lack of user awareness
+Process: No phishing response policy
+Technology: Weak email filtering system
+Management: Poor security governance
+
+👉 Diagram created using Draw.io to visually represent causes of the incident.
+
+📊 Metrics Calculation
+Metric	Value
+MTTD	2 hours
+MTTR	4 hours
+🧠 Metrics Summary (50 Words)
+
+The analysis shows that the Mean Time to Detect (MTTD) was 2 hours, while the Mean Time to Respond (MTTR) was 4 hours. These metrics indicate moderate SOC efficiency. Improving monitoring systems and automating response processes can significantly reduce detection and response times in future incidents.
+
+📚 Lessons Learned
+Improve email filtering mechanisms
+Conduct regular security awareness training
+Implement stronger incident response policies
+Enhance monitoring and alerting systems
+✅ Conclusion
+
+The post-incident analysis highlights gaps in user awareness, email security, and response processes. By addressing these issues and improving SOC capabilities, the organization can reduce risk exposure and improve incident response efficiency.
