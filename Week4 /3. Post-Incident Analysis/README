@@ -1,0 +1,37 @@
+README – SOAR Playbook Development
+📌 Overview
+
+This project demonstrates a Security Orchestration, Automation, and Response (SOAR) playbook for handling phishing incidents. The playbook automates threat validation, IP blocking, and incident creation.
+
+🎯 Objective
+
+To design and simulate an automated response workflow for phishing alerts using:
+
+Splunk Phantom (concept)
+TheHive (case management)
+CrowdSec (IP blocking)
+🧰 Tools Used
+Splunk Phantom (simulated)
+TheHive (simulated)
+CrowdSec (simulated)
+Google Docs (documentation)
+🔄 Playbook Workflow
+Receive phishing alert
+Check IP reputation
+Block malicious IP
+Create incident case
+Notify analyst
+📊 Playbook Execution
+Playbook Step	Status	Notes
+Check IP	Success	IP flagged as malicious
+Block IP	Success	Blocked 192.168.1.102
+Create Case	Success	Incident recorded
+Notify User	Success	Analyst informed
+🧠 Conclusion
+
+The playbook successfully automated phishing response, reducing manual effort and improving response speed.
+
+📄 REPORT (SUBMIT THIS)
+🔹 Playbook Summary (50 words)
+
+A SOAR playbook was developed to automate phishing incident response. The workflow includes validating IP reputation, blocking malicious IPs, creating incident tickets, and notifying analysts. The simulation demonstrated successful execution of all steps, improving response efficiency and ensuring consistent handling of phishing-related threats in a SOC environment.
