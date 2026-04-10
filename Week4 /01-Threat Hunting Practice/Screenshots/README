@@ -1,0 +1,55 @@
+Threat Hunting Practice – README
+📌 Overview
+
+This project demonstrates a basic Threat Hunting workflow using simulated data and lightweight tools. The objective is to identify suspicious activities, validate findings with threat intelligence, and map them to MITRE ATT&CK techniques.
+
+🎯 Objective
+
+To investigate potential unauthorized privilege escalation and validate whether legitimate accounts are being misused.
+
+🧰 Tools Used
+Elastic Security (simulated/log reference)
+Velociraptor (process query simulation)
+AlienVault OTX (threat intelligence lookup)
+🔍 Hunting Hypothesis
+
+Unauthorized privilege escalation may occur through misuse of valid domain accounts.
+
+📊 Log Analysis
+
+Event ID 4672 (Special Privileges Assigned) was analyzed.
+
+Timestamp	User	Event ID	Notes
+2025-08-18 15:00:00	testuser	4672	Unexpected admin role
+🌐 Threat Intelligence
+
+Threat intelligence was gathered using AlienVault OTX.
+
+Technique: T1078 – Valid Accounts
+Indicators:
+Suspicious IPs linked to credential abuse
+Known attack patterns involving privilege escalation
+🖥️ Velociraptor Query (Simulated)
+SELECT Name, Pid, CommandLine FROM processes;
+Findings:
+Suspicious process observed: powershell.exe
+Unusual execution behavior indicating possible misuse
+🧠 Analysis
+Event ID 4672 triggered by a non-standard user (testuser)
+Indicates possible privilege escalation
+Correlated with suspicious process execution
+Matches behavior of Valid Account abuse
+🧾 Hunting Report (100 Words)
+
+Unauthorized privilege escalation was investigated using Windows Security logs (Event ID 4672). A non-administrative user (“testuser”) was assigned elevated privileges, which deviates from normal behavior. Threat intelligence from AlienVault OTX linked the activity to MITRE ATT&CK technique T1078 (Valid Accounts), suggesting potential credential misuse. Further analysis identified suspicious PowerShell execution under the same user context. Although no confirmed compromise was detected, the activity indicates a potential security risk. Continuous monitoring of privileged accounts and stricter access controls are recommended to prevent unauthorized privilege escalation and misuse of valid credentials.
+
+🛡️ MITRE ATT&CK Mapping
+Technique ID	Name	Description
+T1078	Valid Accounts	Abuse of legitimate credentials
+✅ Conclusion
+
+The investigation highlights the importance of:
+
+Monitoring privileged account activity
+Correlating logs with threat intelligence
+Detecting misuse of valid credentials
